@@ -23,7 +23,7 @@ int main()
     {
         printf("Grade C");
     }
-    else if(percentage < 40 && percentage >=0)63
+    else if(percentage < 40 && percentage >=0)
     {
         printf("Fail");
     }
