@@ -22,7 +22,7 @@ int main()
     {
         printf("Grade C");
     }
-    else if(percentage < 40 && percentage >=0)
+    else if(percentage < 40 && percentage >=0)63
     {
         printf("Fail");
     }
@@ -30,4 +30,6 @@ int main()
     {
         printf("Invalid percentage");
     }
+
+    return 0;
 }
