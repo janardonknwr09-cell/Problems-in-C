@@ -4,6 +4,7 @@
 // percentage >= 60 : Grade B
 // percentage >= 40 : Grade C
 // percentage < 40 : Fail
+// important note: percentage should be between 0 to 100 otherwise it is invalid percentage
 #include <stdio.h>
 int main()
 {
