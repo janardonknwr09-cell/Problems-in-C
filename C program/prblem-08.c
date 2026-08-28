@@ -13,5 +13,6 @@ int main()
         first = first / 10;
     }
     printf("First and last digit of %d is %d and %d\n", number, first, last);
+    
     return 0;
 }
