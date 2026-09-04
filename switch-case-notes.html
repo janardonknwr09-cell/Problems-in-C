@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Switch Case in C - Notes</title>
+<style>
+  @page { size: A4; margin: 18mm; }
+  body { font-family: Georgia, serif; color: #202124; line-height: 1.45; font-size: 12pt; }
+  h1 { color: #17365d; font-size: 25pt; margin-bottom: 4px; }
+  h2 { color: #17365d; font-size: 17pt; border-bottom: 1px solid #9fbad0; padding-bottom: 3px; margin-top: 20px; }
+  h3 { color: #285f85; font-size: 13pt; margin-bottom: 4px; }
+  code, pre { font-family: "Courier New", monospace; }
+  pre { background: #f2f5f7; border-left: 4px solid #4f81bd; padding: 9px 12px; white-space: pre-wrap; font-size: 10pt; }
+  .subtitle { color: #5f6368; margin-top: 0; }
+  .box { background: #fff8dc; border: 1px solid #e0c56e; padding: 9px 12px; }
+  li { margin: 4px 0; }
+</style>
+</head>
+<body>
+<h1>Switch Case in C</h1>
+<p class="subtitle">Detailed beginner notes with examples and practice</p>
+
+<h2>1. What is a switch statement?</h2>
+<p>A <code>switch</code> statement selects one block of code from several choices. It compares one expression with exact constant values called <b>case labels</b>.</p>
+<p>It is useful when a program has a menu or a fixed list of choices, such as month numbers, menu options, or calculator operations.</p>
+
+<h2>2. General syntax</h2>
+<pre>switch (expression)
+{
+    case value1:
+        statements;
+        break;
+
+    case value2:
+        statements;
+        break;
+
+    default:
+        statements;
+}</pre>
+<ul>
+  <li><code>expression</code> is the value being tested.</li>
+  <li><code>case</code> gives one possible value.</li>
+  <li>The colon <code>:</code> is required after every case value.</li>
+  <li><code>break</code> exits the switch.</li>
+  <li><code>default</code> runs if no case matches.</li>
+</ul>
+
+<h2>3. Step-by-step example</h2>
+<pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int number = 2;
+
+    switch (number)
+    {
+        case 1:
+            printf("One");
+            break;
+
+        case 2:
+            printf("Two");
+            break;
+
+        default:
+            printf("Invalid number");
+    }
+
+    return 0;
+}</pre>
+<p>First, <code>number</code> contains 2. The switch checks its cases and finds <code>case 2</code>. It prints <code>Two</code>, then <code>break</code> exits the switch.</p>
+
+<h2>4. Understanding break</h2>
+<p>Without <code>break</code>, C continues executing the next statements, even when the next case does not match. This is called <b>fall-through</b>.</p>
+<pre>int number = 1;
+
+switch (number)
+{
+    case 1:
+        printf("One ");
+
+    case 2:
+        printf("Two");
+}</pre>
+<p>Output: <code>One Two</code>. Usually this is not wanted, so place <code>break</code> at the end of each case.</p>
+
+<h2>5. Intentional fall-through</h2>
+<p>Fall-through can be useful when several choices need the same result:</p>
+<pre>switch (month)
+{
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        printf("30 days");
+        break;
+}</pre>
+<p>If <code>month</code> is 4, 6, 9, or 11, all choices reach the same print statement.</p>
+
+<h2>6. The default case</h2>
+<p><code>default</code> is similar to the final <code>else</code> in an <code>if-else</code> chain. It handles invalid or unexpected input.</p>
+<pre>switch (choice)
+{
+    case 1:
+        printf("You selected option 1");
+        break;
+
+    default:
+        printf("Invalid choice");
+}</pre>
+
+<h2>7. Complete month program</h2>
+<pre>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int month;
+
+    printf("Enter month number (1-12): ");
+    scanf("%d", &amp;month);
+
+    switch (month)
+    {
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            printf("Number of days: 30");
+            break;
+
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            printf("Number of days: 31");
+            break;
+
+        case 2:
+            printf("Number of days: 28 or 29");
+            break;
+
+        default:
+            printf("Invalid month number");
+    }
+
+    return 0;
+}</pre>
+<p>For input <code>7</code>, the program selects <code>case 7</code> and prints <code>Number of days: 31</code>.</p>
+
+<h2>8. switch versus if-else</h2>
+<ul>
+  <li>Use <code>switch</code> for one expression and exact choices: 1, 2, 3, or 4.</li>
+  <li>Use <code>if-else</code> for ranges: <code>marks &gt;= 90</code>.</li>
+  <li>Use <code>if-else</code> for multiple conditions involving different variables.</li>
+  <li>A switch does not directly compare strings such as <code>"January"</code>.</li>
+</ul>
+
+<h2>9. Important rules and common mistakes</h2>
+<ul>
+  <li>Do not write <code>case x &gt; 5:</code>; a case needs a constant value.</li>
+  <li>Do not repeat the same case value.</li>
+  <li>Remember the colon after the case value.</li>
+  <li>Remember <code>break</code> unless fall-through is intentional.</li>
+  <li>Use <code>&amp;month</code> in <code>scanf</code> because <code>month</code> is an integer variable.</li>
+  <li>With this program, enter a number such as <code>7</code>, not a name such as <code>July</code>.</li>
+</ul>
+
+<h2>10. Practice exercises</h2>
+<div class="box">
+  <p><b>Exercise 1:</b> Create a menu with 1. Add, 2. Subtract, 3. Multiply, and 4. Divide.</p>
+  <p><b>Exercise 2:</b> Enter a number from 1 to 7 and print the corresponding day of the week.</p>
+  <p><b>Exercise 3:</b> Enter a traffic-light character: <code>R</code>, <code>Y</code>, or <code>G</code>. Print Stop, Ready, or Go.</p>
+</div>
+
+<h2>Quick revision</h2>
+<p><code>switch</code> chooses a matching <code>case</code>. The case code runs until <code>break</code>. If there is no match, <code>default</code> runs.</p>
+</body>
+</html>
