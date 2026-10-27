@@ -8,11 +8,12 @@ int main()
     number = num;
     last = num % 10;
     first = num;
-    while(first >= 10)
+    while(first = 10)
     {
         first = first / 10;
     }
-    printf("First and last digit of %d is %d and %d\n", number, first, last);
+    printf("First and last digit of %d is %d  number, first, last);
+    
     
     return 0;
 }
